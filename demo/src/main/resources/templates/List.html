@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+</head>
+
+<body>
+    <a href="/index">返回</a>
+    <div id="list"></div>
+</body>
+
+</html>
+
+<script>
+    $(function () {
+        $.ajax({
+            url: 'getlist',
+            type: 'GET',
+            dataType: 'json',
+            timeout: 3000,
+            cache: false,
+            error: erryFunction,  //错误执行方法  
+            success: succFunction //成功执行方法  
+        })
+
+        function succFunction(json) {
+            //alert(JSON.stringify(json));
+            $("#list").html(JSON.stringify(json));
+        }
+
+        function erryFunction() {
+             alert("error");
+         }
+    });
+
+</script>
